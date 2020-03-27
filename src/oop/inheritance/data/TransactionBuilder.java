@@ -2,42 +2,42 @@ package oop.inheritance.data;
 
 import java.time.LocalDateTime;
 
-public final class Transaction {
+public class TransactionBuilder {
     private int amountInCents;
     private Card card;
     private LocalDateTime localDateTime;
 
-    public Transaction(int amountInCents, Card card, LocalDateTime localDateTime){
-        this.amountInCents = amountInCents;
-        this.card = card;
-        this.localDateTime = localDateTime;
+    TransactionBuilder(){
     }
 
     public int getAmountInCents() {
         return amountInCents;
     }
 
-    public void setAmountInCents(int amountInCents) {
+    public TransactionBuilder setAmountInCents(int amountInCents) {
         this.amountInCents = amountInCents;
+        return this;
     }
 
     public Card getCard() {
         return card;
     }
 
-    public void setCard(Card card) {
+    public TransactionBuilder setCard(Card card) {
         this.card = card;
+        return this;
     }
 
     public LocalDateTime getLocalDateTime() {
         return localDateTime;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
+    public TransactionBuilder setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
+        return this;
     }
 
-    public static TransactionBuilder builder(){
-        return new TransactionBuilder();
+    public Transaction build(){
+        return new Transaction(amountInCents, card, localDateTime);
     }
 }

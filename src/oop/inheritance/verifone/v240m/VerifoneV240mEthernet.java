@@ -1,6 +1,22 @@
 package oop.inheritance.verifone.v240m;
 
-public class VerifoneV240mEthernet {
+import oop.inheritance.data.TransactionBuilder;
+import oop.inheritance.data.TransactionResponse;
+import oop.inheritance.tpv.CommunicationDevice;
+
+public class VerifoneV240mEthernet implements CommunicationDevice {
+
+    private static VerifoneV240mEthernet theVerifoneV240mEthernet;
+
+    private VerifoneV240mEthernet(){
+    }
+
+    public static VerifoneV240mEthernet getTheVerifoneV240mEthernet(){
+        if(theVerifoneV240mEthernet == null) {
+            theVerifoneV240mEthernet = new VerifoneV240mEthernet();
+        }
+        return theVerifoneV240mEthernet;
+    }
 
     /**
      * Opens a connection using the ethernet device
@@ -15,10 +31,10 @@ public class VerifoneV240mEthernet {
     /**
      * Sends a message to the server
      *
-     * @param message message to be sent to the server
+     * @param transaction message to be sent to the server
      * @return true if the message was sent successfully, false otherwise
      */
-    public boolean send(byte[] message) {
+    public boolean send(TransactionBuilder transaction) {
         return true;
     }
 
@@ -27,8 +43,8 @@ public class VerifoneV240mEthernet {
      *
      * @return Message received from the host. In case of timeout it returns null
      */
-    public byte[] receive() {
-        return "response".getBytes();
+    public TransactionResponse receive() {
+        return new TransactionResponse(true, "12314");
     }
 
     /**

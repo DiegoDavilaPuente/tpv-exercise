@@ -1,9 +1,22 @@
 package oop.inheritance.ingenico;
 
-import oop.inheritance.data.Transaction;
+import oop.inheritance.data.TransactionBuilder;
 import oop.inheritance.data.TransactionResponse;
+import oop.inheritance.tpv.CommunicationDevice;
 
-public class IngenicoEthernet {
+public class IngenicoEthernet implements CommunicationDevice {
+
+    private static IngenicoEthernet theIngenicoEthernet;
+
+    private IngenicoEthernet(){
+    }
+
+    public static IngenicoEthernet getTheIngenicoEthernet(){
+        if(theIngenicoEthernet == null) {
+            theIngenicoEthernet = new IngenicoEthernet();
+        }
+        return theIngenicoEthernet;
+    }
 
     /**
      * Opens a connection using the ethernet device
@@ -21,7 +34,7 @@ public class IngenicoEthernet {
      * @param transaction message to be sent to the server
      * @return true if the message was sent successfully, false otherwise
      */
-    public boolean send(Transaction transaction) {
+    public boolean send(TransactionBuilder transaction) {
         return true;
     }
 

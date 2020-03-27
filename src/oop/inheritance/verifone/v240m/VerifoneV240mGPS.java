@@ -1,6 +1,23 @@
 package oop.inheritance.verifone.v240m;
 
-public class VerifoneV240mGPS {
+import oop.inheritance.data.TransactionBuilder;
+import oop.inheritance.data.TransactionResponse;
+import oop.inheritance.tpv.CommunicationDevice;
+
+public class VerifoneV240mGPS implements CommunicationDevice {
+
+    private static VerifoneV240mGPS theVerifoneV240mGPS;
+
+    private VerifoneV240mGPS(){
+    }
+
+    public static VerifoneV240mGPS getTheVerifoneV240mGPS(){
+        if(theVerifoneV240mGPS == null) {
+            theVerifoneV240mGPS = new VerifoneV240mGPS();
+        }
+        return theVerifoneV240mGPS;
+    }
+
     /**
      * Opens a connection using the GPS device
      *
@@ -14,10 +31,10 @@ public class VerifoneV240mGPS {
     /**
      * Sends a message to the server
      *
-     * @param message message to be sent to the server
+     * @param transaction message to be sent to the server
      * @return true if the message was sent successfully, false otherwise
      */
-    public boolean send(byte[] message) {
+    public boolean send(TransactionBuilder transaction) {
         return true;
     }
 
@@ -26,8 +43,8 @@ public class VerifoneV240mGPS {
      *
      * @return Message received from the host. In case of timeout it returns null
      */
-    public byte[] receive() {
-        return "response".getBytes();
+    public TransactionResponse receive() {
+        return new TransactionResponse(true, "12314");
     }
 
     /**

@@ -2,6 +2,18 @@ package oop.inheritance.verifone.vx690;
 
 public class VerifoneVx690Modem {
 
+    private static VerifoneVx690Modem theVerifoneVx690Modem;
+
+    private VerifoneVx690Modem(){
+    }
+
+    public static VerifoneVx690Modem getTheVerifoneVx690Modem(){
+        if(theVerifoneVx690Modem == null) {
+            theVerifoneVx690Modem = new VerifoneVx690Modem();
+        }
+        return theVerifoneVx690Modem;
+    }
+
     /**
      * Opens a connection using the modem device
      *

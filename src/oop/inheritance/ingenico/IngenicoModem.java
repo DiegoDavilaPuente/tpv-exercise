@@ -1,9 +1,23 @@
 package oop.inheritance.ingenico;
 
-import oop.inheritance.data.Transaction;
+import oop.inheritance.data.TransactionBuilder;
 import oop.inheritance.data.TransactionResponse;
+import oop.inheritance.tpv.CommunicationDevice;
 
-public class IngenicoModem {
+public class IngenicoModem implements CommunicationDevice {
+
+    private static IngenicoModem theIngenicoModem;
+
+    private IngenicoModem(){
+    }
+
+    public static IngenicoModem getTheIngenicoModem(){
+        if(theIngenicoModem == null) {
+            theIngenicoModem = new IngenicoModem();
+        }
+        return theIngenicoModem;
+    }
+
 
     /**
      * Opens a connection using the modem device
@@ -21,7 +35,7 @@ public class IngenicoModem {
      * @param message message to be sent to the server
      * @return true if the message was sent successfully, false otherwise
      */
-    public boolean send(Transaction message) {
+    public boolean send(TransactionBuilder message) {
         return true;
     }
 

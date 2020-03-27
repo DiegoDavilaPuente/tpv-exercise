@@ -1,6 +1,20 @@
 package oop.inheritance.verifone.v240m;
 
-public class VerifoneV240mDisplay {
+import oop.inheritance.tpv.Display;
+
+public class VerifoneV240mDisplay implements Display {
+
+    private static VerifoneV240mDisplay theVerifoneV240mDisplay;
+
+    public VerifoneV240mDisplay(){
+    }
+
+    public static VerifoneV240mDisplay getTheVerifoneV240mDisplay(){
+        if(theVerifoneV240mDisplay == null) {
+            theVerifoneV240mDisplay = new VerifoneV240mDisplay();
+        }
+        return theVerifoneV240mDisplay;
+    }
 
     /**
      * Prints a message to specied position
@@ -19,3 +33,4 @@ public class VerifoneV240mDisplay {
 
     }
 }
+

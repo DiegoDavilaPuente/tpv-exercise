@@ -1,9 +1,22 @@
 package oop.inheritance.ingenico;
 
-import oop.inheritance.data.Transaction;
+import oop.inheritance.data.TransactionBuilder;
 import oop.inheritance.data.TransactionResponse;
+import oop.inheritance.tpv.CommunicationDevice;
 
-public class IngenicoGPS {
+public class IngenicoGPS implements CommunicationDevice {
+
+    private static IngenicoGPS theIngenicoGPS;
+
+    private IngenicoGPS(){
+    }
+
+    public static IngenicoGPS getTheIngenicoGPS(){
+        if(theIngenicoGPS == null) {
+            theIngenicoGPS = new IngenicoGPS();
+        }
+        return theIngenicoGPS;
+    }
     /**
      * Opens a connection using the GPS device
      *
@@ -20,7 +33,7 @@ public class IngenicoGPS {
      * @param message message to be sent to the server
      * @return true if the message was sent successfully, false otherwise
      */
-    public boolean send(Transaction message) {
+    public boolean send(TransactionBuilder message) {
         return true;
     }
 
